@@ -18,7 +18,7 @@ function save() {
     var name = document.getElementById('name').value;
     var sex = document.getElementById('sex').value;
     var bio = document.getElementById('bio').value;
-    var instagram = document.getElementById('instagram').value;
+    var instagram = document.getElementById('instagram').value.toLowerCase(); // Convert Instagram username to lowercase
     var facebook = document.getElementById('facebook').value;
     var icon = document.getElementById('iconSelect').value;
     
@@ -33,7 +33,13 @@ function save() {
       instagram: instagram,
       facebook: facebook,
       icon: icon
+    }).then(function() {
+      // Navigate to the users page after saving the user data
+      window.location.href = "users.html";  // Redirects to users page
+
+      // Reload the page (if you want to reload before navigating to users)
+      // location.reload();  // Uncomment if you want to reload before redirecting
+    }).catch(function(error) {
+      console.error("Error saving user data: ", error);
     });
-  
-    alert('User saved with unique ID');
-  }
+}
