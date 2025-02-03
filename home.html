@@ -2,7 +2,7 @@
 <html lang="en" dir="ltr">
   <head>
     <meta charset="utf-8" />
-    <title>Coffee Date Lab De Lines</title>
+    <title>User Form with Firebase</title>
     <link rel="stylesheet" href="styles.css" />
     <!-- Include FontAwesome library for icons -->
     <link
@@ -13,22 +13,55 @@
   <body>
     <div id="container">
       <div id="title_container">
-        <h2> 💌 Coffee Date Lab De Lines 💌</h2>
+        <h2>User Profile Form</h2>
+      </div>
+
+      <div id="form_container">
+        <!-- Name Input -->
+        <!-- <label for="name">Name:</label> -->
+        <input placeholder="ຊື່" type="text" id="name" />
+
+        <!-- Sex Select Dropdown -->
+        <!-- <label for="sex">Sex:</label> -->
+        <select id="sex">
+          <option value="Male">Male</option>
+          <option value="Female">Female</option>
+          <option value="Female">LGBTQ+</option>
+
+          <option value="Other">Other</option>
+        </select>
+
+        <!-- Bio Textarea -->
+        <!-- <label for="bio">Bio:</label> -->
+        <textarea id="bio" placeholder="ເຈົ້າຢາກບອກຫຍັງກັບຄົນທີ່ອ່ານ..."></textarea>
+
+        <!-- Instagram Input -->
+        <!-- <label for="instagram">Instagram Username:</label> -->
+        <input placeholder="IG Username ຕົວຢ່າງ: babyicxe" type="text" id="instagram" />
+
+        <!-- Facebook Input -->
+        <!-- <label for="facebook">Facebook Name:</label> -->
+        <input placeholder="Facebook Name" type="text" id="facebook" />
+
+        <!-- Icon Select Dropdown -->
+        <label for="iconSelect">ຖ້າໃຫ້ອະທິບາຍຕົວເອງດ້ວຍ icon?</label>
+        <select id="iconSelect">
+            <option value="☕">☕ Coffee Cup</option>
+            <option value="❤️">❤️ Heart</option>
+            <option value="😊">😊 Smile</option>
+            <option value="🧁">🧁 Cupcake</option>
+            <option value="🐾">🐾 Paw</option>
+            <option value="🐱">🐱 Cat</option>
+        </select>
       </div>
 
       <div id="button_container">
-        <!-- Button to go to index.html (User Profile Form) -->
-        <button onclick="window.location.href='index.html'">
-          ສ້າງໂປຣຟາຍ ✍️
-        </button>
-
-        <!-- Button to go to users.html (User Profiles) -->
-        <button onclick="window.location.href='users.html'">
-          ຊ່ອງໂປຣຟາຍ 👀
-        </button>
+        <button id="submit" onclick="save()">SUBMIT</button>
       </div>
     </div>
 
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/js/all.min.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/8.3.1/firebase-app.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/8.3.1/firebase-database.js"></script>
+    <script src="index.js"></script>
   </body>
 </html>
