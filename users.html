@@ -7,9 +7,6 @@
     <link rel="stylesheet" href="styles.css" />
     <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+Lao&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
-
-  
-
 </head>
 <body>
     <div id="container">
@@ -17,11 +14,25 @@
             <h2>😳  ແຈກວ໊າບ ແຈກໃຈ 🤭</h2>
         </div>
 
+        <!-- Gender Filter Dropdown -->
+        <div id="filter-container">
+            <label for="sexFilter"></label>
+            <select id="sexFilter">
+                <option value="all">All</option>
+                <option value="Male">Male</option>
+                <option value="Female">Female</option>
+                <option value="LGBTQ+">LGBTQ+</option>
+                <option value="Other">Other</option>
+            </select>
+        </div>
+
+        <!-- User Profiles will be displayed here -->
         <div id="user_list">
             <!-- Users will be displayed here -->
         </div>
     </div>
 
+    <!-- Firebase Scripts -->
     <script src="https://www.gstatic.com/firebasejs/8.3.1/firebase-app.js"></script>
     <script src="https://www.gstatic.com/firebasejs/8.3.1/firebase-database.js"></script>
     <script src="fetchUsers.js"></script>
