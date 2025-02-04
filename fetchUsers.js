@@ -22,13 +22,16 @@ function fetchUsers() {
       var userCard = document.createElement("div");
       userCard.classList.add("user-card");
 
+      // Extract Instagram username from URL if provided
+      var instagramUsername = user.instagram ? user.instagram.split("/").pop() : null;
+
       userCard.innerHTML = `
         <div class="icon">${user.icon || "👤"}</div>
         <h3>${user.name || "Unknown"}</h3>
         <p><strong>Gender:</strong> ${user.sex || "Not specified"}</p>
         <p class="bio">${user.bio || "No bio available."}</p>
         <p><strong>IG:</strong> 
-          ${user.instagram ? `<a href="javascript:void(0);" onclick="window.open('https://www.instagram.com/explore/search/people/?q=${user.instagram}', '_blank', 'width=800, height=600')">@${user.instagram}</a>` : "N/A"}
+          ${user.instagram ? `<a href="https://www.instagram.com/${instagramUsername}" target="_blank">@${instagramUsername}</a>` : "N/A"}
         </p>
         <p><strong>FB:</strong> 
           ${user.facebook ? `<a href="javascript:void(0);" onclick="window.open('https://www.google.com/search?q=${user.facebook}+facebook', '_blank', 'width=800, height=600')">${user.facebook}</a>` : "N/A"}
