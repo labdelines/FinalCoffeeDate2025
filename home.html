@@ -8,12 +8,14 @@
     <!-- Include FontAwesome library for icons -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css" />
     <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+Lao&display=swap" rel="stylesheet">
-
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Barriecito&display=swap" rel="stylesheet">
 </head>
 <body>
     <div id="container">
-        <div id="title_container">
-            <h2>User Profile Form</h2>
+        <div id="title_containe_2">
+            <h2 class="h2-container">User Profile Form</h2>
         </div>
 
         <form id="userForm" onsubmit="event.preventDefault(); save();">
@@ -35,27 +37,38 @@
                 <!-- Bio Textarea -->
                 <textarea id="bio" placeholder="ເຈົ້າຢາກບອກຫຍັງກັບຄົນທີ່ອ່ານ..."></textarea>
 
-                <!-- Instagram Input -->
-                <input placeholder="IG Username ຕົວຢ່າງ: babyicxe" type="text" id="instagram" />
-                <p class="error-message" id="instagram-error"></p>
+                <!-- Instagram Input with Icon -->
+                <div class="social-input">
+                  <i class="fab fa-instagram" style="font-size: 24px; color: #E1306C; margin-bottom: 10px;"></i>
+                  <input placeholder="Username IG  ຕົວຢ່າງ: babyicxe" type="text" id="instagram" />
+              </div>
+              <p class="error-message" id="instagram-error"></p>
 
-                <!-- Facebook Input -->
-                <input placeholder="Facebook Name" type="text" id="facebook" />
+              <!-- Facebook Input with Icon -->
+              <div class="social-input">
+                  <i class="fab fa-facebook" style="font-size: 24px; color: #3b5998; margin-bottom: 10px;"></i>
+                  <input placeholder="Facebook Name" type="text" id="facebook" />
+              </div>
 
                 <!-- Icon Select Dropdown -->
                 <label for="iconSelect">ຖ້າໃຫ້ອະທິບາຍຕົວເອງດ້ວຍ icon?</label>
                 <select id="iconSelect">
                     <option value="☕">☕ Coffee Cup</option>
+                    <option value="🍺">🍺 Party</option>
                     <option value="❤️">❤️ Heart</option>
                     <option value="😊">😊 Smile</option>
                     <option value="🧁">🧁 Cupcake</option>
-                    <option value="🐾">🐾 Paw</option>
+                    <option value="📸">📸 Camera</option>
                     <option value="🐱">🐱 Cat</option>
+                    <option value="🐶">🐶 Dog</option>
+                    <option value="🥵">🥵 tasty</option>
+                    <option value="😳">😳 shy</option>
+                    <option value="😹">😹 silly</option>
                 </select>
             </div>
 
-            <div id="button_container">
-                <button type="submit">SUBMIT</button>
+            <div id="button_container_2">
+                <button type="submit" style="margin-top: 10px;">SUBMIT</button>
             </div>
 
             <p id="success-message" class="success-message">Loading profiles</p>

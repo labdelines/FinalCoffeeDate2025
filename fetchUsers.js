@@ -11,7 +11,6 @@ var firebaseConfig = {
 firebase.initializeApp(firebaseConfig);
 var database = firebase.database();
 
-// Fetch and display users
 // Function to get gender icon
 function getGenderIcon(sex) {
   if (sex === "Male") {
@@ -25,37 +24,76 @@ function getGenderIcon(sex) {
   }
 }
 
-// Fetch and display users
+// Array of six vibrant colors for user cards
+const colors = ["#FFD8E2", "#f0d0c3", "#ebcdee", "#f6cfc3", "#eca175", "#fff1f"];
+
+// Function to fetch and display users
 function fetchUsers() {
   var userList = document.getElementById("user_list");
   userList.innerHTML = ""; // Clear previous entries
 
   database.ref("users").once("value", function (snapshot) {
-      snapshot.forEach(function (childSnapshot) {
-          var user = childSnapshot.val();
-          var userCard = document.createElement("div");
-          userCard.classList.add("user-card");
+    snapshot.forEach(function (childSnapshot) {
+      var user = childSnapshot.val();
+      var userCard = document.createElement("div");
+      userCard.classList.add("user-card");
 
-          // Extract Instagram username from URL if provided
-          var instagramUsername = user.instagram ? user.instagram.split("/").pop() : null;
+      // Random pastel background
+      let randomColor = colors[Math.floor(Math.random() * colors.length)];
+      userCard.style.backgroundColor = randomColor; 
+      userCard.style.borderRadius = "15px";
+      userCard.style.boxShadow = "2px 2px 10px rgba(0, 0, 0, 0.05)";
 
-          userCard.innerHTML = `
-              <div class="icon">${user.icon || "👤"}</div>
-              <h3>${user.name || "Unknown"}</h3>
-              <p class="gender">${getGenderIcon(user.sex)} <strong>${user.sex || "Not specified"}</strong></p>
-              <p class="bio">${user.bio || "No bio available."}</p>
+      var instagramUsername = user.instagram ? user.instagram.split("/").pop() : null;
 
-              <div class="social-links">
-                  ${user.instagram ? `<a href="https://www.instagram.com/${instagramUsername}" target="_blank"><i class="fab fa-instagram"></i></a>` : ""}
-                  ${user.facebook ? `<a href="https://www.facebook.com/search/top?q=${encodeURIComponent(user.facebook)}" target="_blank"><i class="fab fa-facebook"></i></a>` : ""}
-              </div>
-          `;
+      userCard.innerHTML = `
+        <div class="iconn">${user.icon || "👤"}</div>
+        <h3>${user.name || "Unknown"}</h3>
+        <p class="gender">${getGenderIcon(user.sex)} <strong>${user.sex || "Not specified"}</strong></p>
+        <p class="bio ">${user.bio || "No bio available."}</p>
 
-          userList.appendChild(userCard);
-      });
+        <div class="social-links">
+          ${user.instagram ? `<a href="https://www.instagram.com/${instagramUsername}" target="_blank"><i class="fab fa-instagram"></i></a>` : ""}
+          ${user.facebook ? `<a href="https://www.facebook.com/search/top?q=${encodeURIComponent(user.facebook)}" target="_blank"><i class="fab fa-facebook"></i></a>` : ""}
+        </div>
+      `;
+
+      userList.appendChild(userCard);
+    });
+  });
+}
+
+// Save function to submit data and reset form
+function save() {
+  // Get form data
+  var name = document.getElementById("name").value;
+  var sex = document.getElementById("sex").value;
+  var bio = document.getElementById("bio").value;
+  var instagram = document.getElementById("instagram").value;
+  var facebook = document.getElementById("facebook").value;
+  var icon = document.getElementById("iconSelect").value;
+
+  // Create new user object
+  var newUser = {
+    name: name,
+    sex: sex,
+    bio: bio,
+    instagram: instagram,
+    facebook: facebook,
+    icon: icon
+  };
+
+  // Push to Firebase
+  database.ref("users").push(newUser, function(error) {
+    if (error) {
+      console.log("Error saving data:", error);
+    } else {
+      // Clear the form after submitting
+      document.getElementById("userForm").reset();
+      alert("Profile saved successfully!");
+    }
   });
 }
 
 // Load users when the page is ready
 window.onload = fetchUsers;
-
