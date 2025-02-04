@@ -1,247 +1,278 @@
-/* Base Styles */
+/* 🔹 Reset Styles */
 * {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: "Arial", sans-serif;
 }
 
+/* 🔹 Background */
 body {
-    font-family: 'Arial', sans-serif;
-    background: linear-gradient(135deg, #fdfdfd, #f0f0f0);
-    color: #262626;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    min-height: 100vh;
-    text-align: center;
-    padding: 20px;
+  background: linear-gradient(135deg, #ff9a9e, #fad0c4, #fad0c4);
+  text-align: center;
+  padding: 20px;
 }
 
-/* Container Styling */
+/* 🔹 Main Container */
 #container {
-    width: 100%;
-    max-width: 800px;
-    padding: 25px;
-    margin: 0 auto;
-    background-color: white;
-    border-radius: 10px;
-    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
-    border: 1px solid #dbdbdb;
+  display: flex;
+  flex-direction: column;
+  /* align-items: center; */
+  justify-content: center;
+  width: 100%;
+  max-width: 800px;
+  margin: auto;
 }
 
-/* Title Styling */
+/* 🔹 Title */
 #title_container h2 {
-    font-size: 2rem;
-    margin-bottom: 20px;
-    color: #262626;
-    font-weight: bold;
-    text-transform: uppercase;
-    letter-spacing: 1px;
+  font-size: 28px;
+  color: #fff;
+  background: linear-gradient(135deg, #ff758c, #ff7eb3);
+  padding: 10px 20px;
+  border-radius: 12px;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
 }
 
-/* Button Styling */
-button {
-    background-color: #b3137d; /* Instagram Blue */
-    color: white;
-    font-size: 1.1rem;
-    padding: 14px 20px;
-    border: none;
-    border-radius: 5px;
-    cursor: pointer;
-    width: 100%;
-    transition: background-color 0.3s;
-    text-transform: uppercase;
-    font-weight: bold;
+/* 🔹 Form Styling */
+#form_container {
+  background: #fff;
+  padding: 20px;
+  border-radius: 15px;
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+  width: 100%;
+  max-width: 800px;
+  margin-top: 20px;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
 }
 
-button:hover {
-    background-color: #bd1e9a;
-}
-
-/* Input Fields Styling */
-input, select, textarea {
-    width: 100%;
-    padding: 12px;
-    margin: 10px 0;
-    border: 1px solid #dbdbdb;
-    border-radius: 5px;
-    font-size: 1rem;
-    background-color: #fafafa;
-    transition: border-color 0.3s;
-}
-
-input:focus, select:focus, textarea:focus {
-    border-color: #3897f0;
-    outline: none;
-}
-
-/* Textarea Styling */
-textarea {
-    height: 120px;
-    resize: vertical;
-}
-
-/* Dropdown Styling */
+/* 🔹 Input Fields */
+input,
 select {
-    appearance: none;
-    -webkit-appearance: none;
-    -moz-appearance: none;
-    background-color: #fff;
-    padding-right: 30px;
-    background-position: right 10px center;
-    background-repeat: no-repeat;
+  width: 100%;
+  padding: 12px;
+  border: 2px solid #ddd;
+  border-radius: 8px;
+  font-size: 16px;
+  background: #fafafa;
+  transition: 0.3s;
 }
 
-/* User List Styling - Flexbox */
-#user_list {
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: space-between;
-    gap: 20px;
-    margin-top: 20px;
+textarea {
+  width: 100%;
+  padding: 20px;
+  border: 2px solid #ddd;
+  border-radius: 8px;
+  font-size: 16px;
+  background: #fafafa;
+  transition: 0.3s;
 }
 
-/* Instagram-like Card Style for Users */
-.user-profile {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    background-color: #fff;
-    border-radius: 10px;
-    padding: 20px;
-    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
-    border: 1px solid #dbdbdb;
-    text-align: center;
-    transition: box-shadow 0.3s ease, transform 0.3s ease;
-    flex: 1 1 300px; /* Ensures cards are flexible and take available space */
+input:focus,
+select:focus,
+textarea:focus {
+  border-color: #ff758c;
+  outline: none;
 }
 
-.user-profile:hover {
-    box-shadow: 0 8px 15px rgba(0, 0, 0, 0.15);
-    transform: translateY(-5px);
+/* 🔹 Error & Success Messages */
+.error-message {
+  color: red;
+  font-size: 14px;
+  display: none;
+  margin-top: 2px;
+}
+.success-message {
+  color: green;
+  font-size: 16px;
+  display: none;
+  margin-top: 10px;
 }
 
-.user-icon {
-    font-size: 2.5rem;
-    margin-bottom: 15px;
-}
-
-.user-profile h3 {
-    font-size: 1.5rem;
-    font-weight: bold;
-    margin-top: 10px;
-    color: #262626;
-}
-
-.user-profile p {
-    font-size: 1rem;
-    color: #999;
-    margin: 5px 0;
-}
-
-.user-profile a {
-    text-decoration: none;
-    color: #3897f0;
-    font-weight: bold;
-}
-
-.user-profile a:hover {
-    text-decoration: underline;
-}
-
-/* Home Page Button Styling */
+/* 🔹 Buttons */
 #button_container {
-    display: flex;
-    flex-direction: column;
-    gap: 20px;
+  margin-top: 20px;
+}
+
+button {
+  background: linear-gradient(135deg, #ff758c, #ff7eb3);
+  color: white;
+  font-size: 18px;
+  padding: 12px;
+  border-radius: 10px;
+  border: none;
+  cursor: pointer;
+  transition: 0.3s;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
 }
 
 #button_container button {
-    background: linear-gradient(135deg, #f5a623, #86106d);
-    font-size: 1.2rem;
-    padding: 18px 25px;
-    width: 100%;
+  margin-top: 20px;
 }
 
-#button_container button:hover {
-    background: linear-gradient(135deg, #f0a500, #5f063d);
+button:hover {
+  background: linear-gradient(135deg, #ff5f6d, #ff7eb3);
+  transform: translateY(-2px);
 }
 
-/* Instagram-like button color for "submit" */
-#submit {
-    background-color: #f5a623; /* Instagram gradient theme */
+/* 🔹 User List - Responsive Grid */
+#user_list {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 20px;
+    margin-top: 30px;
+  }
+
+/* 🔹 User Card - Flexible with bio content */
+.user-card {
+  background: #fff;
+  border-radius: 12px;
+  padding: 20px;
+  box-shadow: 0 6px 15px rgba(0, 0, 0, 0.1);
+  transition: 0.3s;
+  text-align: center;
+  width: 100%;
+
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  overflow: hidden; /* Ensures no content goes outside the card */
+}
+
+/* 🔹 User Card Hover Effect */
+.user-card:hover {
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15);
+  transform: translateY(-5px);
+}
+
+/* Bio Styling */
+.user-card p {
+  text-align: left;
+  font-size: 14px;
+  color: #777;
+  margin-top: 10px;
+  overflow: hidden; /* Prevents text from overflowing the card */
+  text-overflow: ellipsis; /* Adds "..." if the text is too long */
+  white-space: normal; /* Allows the text to wrap to multiple lines */
+  max-height: 100px; /* Ensures the bio section doesn't stretch the card too much */
+}
+
+.user-card p.bio {
+  border: solid white;
+  box-shadow: 0 3px 20px rgba(0, 0, 0, 0.15);
+  border-radius: 12px;
+  padding: 20px;
+}
+
+/* 🔹 User Icon */
+.icon {
+  font-size: 40px;
+  background: linear-gradient(135deg, #ff758c, #ff7eb3);
+  color: white;
+  width: 70px;
+  height: 70px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: auto;
+  margin-bottom: 10px;
+}
+
+/* 🔹 User Info */
+.user-card h3 {
+  font-size: 20px;
+  font-weight: bold;
+  color: #333;
+}
+
+.user-card p {
+  font-size: 14px;
+  color: #777;
+  margin: 5px 0;
+}
+
+/* 🔹 Links */
+.user-card a {
+  text-decoration: none;
+  color: #ff758c;
+  font-weight: bold;
+}
+
+.user-card a:hover {
+  text-decoration: underline;
+}
+
+/* 🔹 Responsive Design */
+@media (max-width: 768px) {
+  #container {
+    padding: 0;
+    margin: 0;
+  }
+  #title_container h2 {
+    font-size: 22px;
+    padding: 8px 15px;
+  }
+  .icon {
+    font-size: 20px;
+    background: linear-gradient(135deg, #ff758c, #ff7eb3);
     color: white;
-    font-size: 1.1rem;
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: auto;
+
+  }
+  #user_list {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+
+  }
+  .user-card {
+    width: 100%;
+    max-height: 400px;
+  }
+  .user-card p {
+    text-align: left;
+    font-size: 14px;
+    color: #777;
+    margin-top: 10px;
+    overflow: hidden; /* Prevents text from overflowing the card */
+    text-overflow: ellipsis; /* Adds "..." if the text is too long */
+    white-space: normal; /* Allows the text to wrap to multiple lines */
+    
+  }
+
+  .user-card h3 {
+    font-size: 20px;
+    color: #101010;
+    margin-top: 10px;
+
+
+    text-overflow: ellipsis; /* Adds "..." if the text is too long */
+    white-space: normal; /* Allows the text to wrap to multiple lines */
+  }
+  .user-card p.bio {
+    border: solid white;
+    box-shadow: 0 3px 20px rgba(0, 0, 0, 0.15);
+    border-radius: 12px;
+    padding: 10px;
+    font-size: 14px;
+    height: 100px;
+  }
+  button {
+    font-size: 16px;
+    padding: 10px;
+  }
+
+  #button_container button {
+    font-size: 25px;
+    padding: 20px 40px 20px 40px;
+  }
 }
-
-#submit:hover {
-    background-color: #f0a500;
-}
-
-/* Responsive Design for User List */
-@media (max-width: 600px) {
-    #container {
-        padding: 15px;
-    }
-
-    #title_container h2 {
-        font-size: 1.5rem;
-    }
-
-    .user-profile {
-        padding: 15px;
-        flex: 1 1 100%; /* Each profile takes the full width on smaller screens */
-    }
-
-    .user-profile h3 {
-        font-size: 1.2rem;
-    }
-
-    .user-icon {
-        font-size: 2rem;
-    }
-
-    button {
-        font-size: 1rem;
-        padding: 12px 20px;
-    }
-
-    input, select, textarea {
-        font-size: 1rem;
-    }
-
-    #button_container {
-        gap: 15px;
-    }
-}
-
-/* For Very Small Devices (e.g., iPhone) */
-@media (max-width: 400px) {
-    #user_list {
-        flex-direction: column; /* Stack the user profiles vertically */
-        gap: 10px;
-    }
-
-    .user-profile {
-        padding: 12px;
-        flex: 1 1 100%; /* Make the profile take full width */
-    }
-
-    .user-profile h3 {
-        font-size: 1.1rem;
-    }
-
-    .user-icon {
-        font-size: 1.8rem;
-    }
-
-    button {
-        font-size: 0.9rem;
-        padding: 10px 15px;
-    }
-
-    input, select, textarea {
-        font-size: 0.9rem;
-        padding: 10px;
-    }
 }

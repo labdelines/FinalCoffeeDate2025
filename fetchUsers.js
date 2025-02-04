@@ -1,48 +1,44 @@
-// Firebase Configuration (Replace with your actual Firebase config)
+// Firebase configuration
 var firebaseConfig = {
-    apiKey: "AIzaSyDEjd2KfgzGKyIHfstywMpzY3mVdhA_nzA",
-    authDomain: "finalcoffeedate.firebaseapp.com",
-    databaseURL: "https://finalcoffeedate-default-rtdb.asia-southeast1.firebasedatabase.app",
-    projectId: "finalcoffeedate",
-    storageBucket: "finalcoffeedate.firebasestorage.app",
-    messagingSenderId: "219107419254",
-    appId: "1:219107419254:web:53730a0c50a0a6ddb76b57"
+  apiKey: "AIzaSyDEjd2KfgzGKyIHfstywMpzY3mVdhA_nzA",
+  authDomain: "finalcoffeedate.firebaseapp.com",
+  databaseURL: "https://finalcoffeedate-default-rtdb.asia-southeast1.firebasedatabase.app",
+  projectId: "finalcoffeedate",
+  storageBucket: "finalcoffeedate.firebasestorage.app",
+  messagingSenderId: "219107419254",
+  appId: "1:219107419254:web:53730a0c50a0a6ddb76b57"
 };
-
-// Initialize Firebase
 firebase.initializeApp(firebaseConfig);
-
-// Get reference to Firebase database
 var database = firebase.database();
 
-// Function to fetch and display user profiles
+// Fetch and display users
 function fetchUsers() {
-  var userListDiv = document.getElementById('user_list');
-  database.ref('users/').on('value', function(snapshot) {
-    var users = snapshot.val();
-    userListDiv.innerHTML = ''; // Clear the previous list
-    for (var username in users) {
-      var user = users[username];
-      
-      // Create user profile elements
-      var userDiv = document.createElement('div');
-      userDiv.classList.add('user-profile');
-      
-      var icon = user.icon ? user.icon : '😀'; // Default emoji if no icon selected
-      userDiv.innerHTML = `
-        <div class="user-icon">${icon}</div>
-        <h3>${user.name}</h3>
-        <p><strong>Sex:</strong> ${user.sex}</p>
-        <p><strong>Bio:</strong> ${user.bio}</p>
-        <p><strong>Instagram:</strong> <a href="https://instagram.com/${user.instagram}" target="_blank">${user.instagram}</a></p>
-        <p><strong>Facebook:</strong> ${user.facebook}</a></p>
+  var userList = document.getElementById("user_list");
+  userList.innerHTML = ""; // Clear previous entries
+
+  database.ref("users").once("value", function (snapshot) {
+    snapshot.forEach(function (childSnapshot) {
+      var user = childSnapshot.val();
+      var userCard = document.createElement("div");
+      userCard.classList.add("user-card");
+
+      userCard.innerHTML = `
+        <div class="icon">${user.icon || "👤"}</div>
+        <h3>${user.name || "Unknown"}</h3>
+        <p><strong>Gender:</strong> ${user.sex || "Not specified"}</p>
+        <p class="bio">${user.bio || "No bio available."}</p>
+        <p><strong>IG:</strong> 
+          ${user.instagram ? `<a href="javascript:void(0);" onclick="window.open('https://www.instagram.com/explore/search/people/?q=${user.instagram}', '_blank', 'width=800, height=600')">@${user.instagram}</a>` : "N/A"}
+        </p>
+        <p><strong>FB:</strong> 
+          ${user.facebook ? `<a href="javascript:void(0);" onclick="window.open('https://www.google.com/search?q=${user.facebook}+facebook', '_blank', 'width=800, height=600')">${user.facebook}</a>` : "N/A"}
+        </p>
       `;
-      
-      // Append the user profile to the user list
-      userListDiv.appendChild(userDiv);
-    }
+
+      userList.appendChild(userCard);
+    });
   });
 }
 
-// Call the function to fetch users on page load
-fetchUsers();
+// Load users when the page is ready
+window.onload = fetchUsers;

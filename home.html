@@ -1,69 +1,67 @@
 <!DOCTYPE html>
 <html lang="en" dir="ltr">
-  <head>
+<head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1">
-
     <title>User Form with Firebase</title>
     <link rel="stylesheet" href="styles.css" />
     <!-- Include FontAwesome library for icons -->
-    <link
-      rel="stylesheet"
-      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css"
-    />
-  </head>
-  <body>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css" />
+</head>
+<body>
     <div id="container">
-      <div id="title_container">
-        <h2>User Profile Form</h2>
-      </div>
+        <div id="title_container">
+            <h2>User Profile Form</h2>
+        </div>
 
-      <div id="form_container">
-        <!-- Name Input -->
-        <!-- <label for="name">Name:</label> -->
-        <input placeholder="ຊື່" type="text" id="name" />
+        <form id="userForm" onsubmit="event.preventDefault(); save();">
+            <div id="form_container">
+                <!-- Name Input -->
+                <input placeholder="ຊື່" type="text" id="name" />
+                <p class="error-message" id="name-error"></p>
 
-        <!-- Sex Select Dropdown -->
-        <!-- <label for="sex">Sex:</label> -->
-        <select id="sex">
-          <option value="Male">Male</option>
-          <option value="Female">Female</option>
-          <option value="Female">LGBTQ+</option>
+                <!-- Sex Select Dropdown -->
+                <select id="sex">
+                    <option value="">ເພດ</option>
+                    <option value="Male">Male</option>
+                    <option value="Female">Female</option>
+                    <option value="LGBTQ+">LGBTQ+</option>
+                    <option value="Other">Other</option>
+                </select>
+                <p class="error-message" id="sex-error"></p>
 
-          <option value="Other">Other</option>
-        </select>
+                <!-- Bio Textarea -->
+                <textarea id="bio" placeholder="ເຈົ້າຢາກບອກຫຍັງກັບຄົນທີ່ອ່ານ..."></textarea>
 
-        <!-- Bio Textarea -->
-        <!-- <label for="bio">Bio:</label> -->
-        <textarea id="bio" placeholder="ເຈົ້າຢາກບອກຫຍັງກັບຄົນທີ່ອ່ານ..."></textarea>
+                <!-- Instagram Input -->
+                <input placeholder="IG Username ຕົວຢ່າງ: babyicxe" type="text" id="instagram" />
+                <p class="error-message" id="instagram-error"></p>
 
-        <!-- Instagram Input -->
-        <!-- <label for="instagram">Instagram Username:</label> -->
-        <input placeholder="IG Username ຕົວຢ່າງ: babyicxe" type="text" id="instagram" />
+                <!-- Facebook Input -->
+                <input placeholder="Facebook Name" type="text" id="facebook" />
 
-        <!-- Facebook Input -->
-        <!-- <label for="facebook">Facebook Name:</label> -->
-        <input placeholder="Facebook Name" type="text" id="facebook" />
+                <!-- Icon Select Dropdown -->
+                <label for="iconSelect">ຖ້າໃຫ້ອະທິບາຍຕົວເອງດ້ວຍ icon?</label>
+                <select id="iconSelect">
+                    <option value="☕">☕ Coffee Cup</option>
+                    <option value="❤️">❤️ Heart</option>
+                    <option value="😊">😊 Smile</option>
+                    <option value="🧁">🧁 Cupcake</option>
+                    <option value="🐾">🐾 Paw</option>
+                    <option value="🐱">🐱 Cat</option>
+                </select>
+            </div>
 
-        <!-- Icon Select Dropdown -->
-        <label for="iconSelect">ຖ້າໃຫ້ອະທິບາຍຕົວເອງດ້ວຍ icon?</label>
-        <select id="iconSelect">
-            <option value="☕">☕ Coffee Cup</option>
-            <option value="❤️">❤️ Heart</option>
-            <option value="😊">😊 Smile</option>
-            <option value="🧁">🧁 Cupcake</option>
-            <option value="🐾">🐾 Paw</option>
-            <option value="🐱">🐱 Cat</option>
-        </select>
-      </div>
+            <div id="button_container">
+                <button type="submit">SUBMIT</button>
+            </div>
 
-      <div id="button_container">
-        <button id="submit" onclick="save()">SUBMIT</button>
-      </div>
+            <p id="success-message" class="success-message">Profile saved successfully!</p>
+        </form>
     </div>
 
     <script src="https://www.gstatic.com/firebasejs/8.3.1/firebase-app.js"></script>
     <script src="https://www.gstatic.com/firebasejs/8.3.1/firebase-database.js"></script>
     <script src="index.js"></script>
-  </body>
+</body>
 </html>
