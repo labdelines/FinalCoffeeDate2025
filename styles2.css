@@ -3,7 +3,7 @@
   margin: 0;
   padding: 0;
   box-sizing: border-box;
-  font-family: "Noto Sans Lao", sans-serif;
+  font-family: "Arial", sans-serif;
 }
 
 /* 🔹 Background */
@@ -61,6 +61,9 @@ body {
 }
 
 #title_container p {
+  font-family: "Barriecito", serif;
+  font-weight: 400;
+  font-style: normal;
   font-size: 22px; /* Slightly larger for better readability */
   color: #ffffff; /* White text for contrast */
   padding: 15px 20px; /* Balanced padding */
@@ -249,7 +252,7 @@ button:hover {
 }
 
 .user-card p.bio {
-
+  border: solid white;
   box-shadow: 0 3px 20px rgba(0, 0, 0, 0.15);
   border-radius: 12px;
   padding: 20px;
@@ -351,45 +354,45 @@ button:hover {
   border-radius: 10px; /* Rounded corners for a softer look */
 }
 
-select#sexFilter{
-  font-size: 20px;
+#randomLoveBtn {
+  background-color: #ff4d6d;
+  color: white;
+  font-size: 18px;
+  padding: 10px 20px;
+  border: none;
+  border-radius: 10px;
+  cursor: pointer;
+  margin: 15px;
+  display: block;
 }
 
+#randomLoveBtn:hover {
+  background-color: #e63950;
+}
+
+/* Loading Screen */
 .loading-screen {
   display: flex;
-  flex-direction: column; /* Align items in a vertical column */
-  justify-content: center; /* Center items vertically */
-  align-items: center; /* Center items horizontally */
-  padding: 15px 20px;
-  text-shadow: 3px 3px 8px rgba(0, 0, 0, 0.7), 0 0 25px rgba(255, 105, 180, 0.6);
-  margin: 5px auto;
-  text-align: center;
-  background: linear-gradient(135deg, #ff758c, #ff7eb3);
-  border-radius: 10px;
-  height: 100vh; /* Full-screen height */
-}
-
-.loading-screen h2 {
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  height: 100vh;
+  font-size: 24px;
   font-family: "Barriecito", serif;
-  font-weight: 400;
-  font-style: normal;
-  font-size: 50px;
-  color: #ffffff;
-  padding: 15px 20px;
-  text-shadow: 3px 3px 8px rgba(0, 0, 0, 0.7), 0 0 25px rgba(255, 105, 180, 0.6);
-  margin-bottom: 15px; /* Adds space between text and spinner */
-  text-align: center;
-  background: linear-gradient(135deg, #ff758c, #ff7eb3);
-  border-radius: 10px;
+  
+  /* background-color: #fff; */
+  color: #e91e63;
 }
 
+/* Spinning Heart Animation */
 .spinner {
+  margin-top: 20px;
   width: 50px;
   height: 50px;
-  border: 5px solid rgba(255, 255, 255, 0.3);
-  border-top: 5px solid #ff758c;
+  border: 5px solid #ffb6c1;
+  border-top: 5px solid #e91e63;
   border-radius: 50%;
-  animation: spin 1s linear infinite;
+  animation: spin 1.5s linear infinite;
 }
 
 @keyframes spin {
@@ -397,30 +400,6 @@ select#sexFilter{
   100% { transform: rotate(360deg); }
 }
 
-.back-button {
-  display: inline-block;
-  text-decoration: none;
-  font-size: 18px;
-  font-weight: bold;
-  color: white;
-  background: linear-gradient(135deg, #ff758c, #ff7eb3); /* Gradient background */
-  padding: 12px 20px;
-  margin-top: 10px;
-  border-radius: 8px;
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
-  transition: all 0.3s ease-in-out;
-}
-
-.back-button:hover {
-  background: linear-gradient(135deg, #ff5f6d, #ff7eb3); /* Darker gradient on hover */
-  transform: translateY(-3px);
-  box-shadow: 0 6px 12px rgba(0, 0, 0, 0.3);
-}
-
-.back-button:active {
-  transform: translateY(1px);
-  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.2);
-}
 
 
 /* 🔹 Responsive Design */
@@ -455,9 +434,9 @@ select#sexFilter{
     padding: 8px 15px;
   }
 
-  .iconn {
-    font-size: 30px;
-    background: linear-gradient(135deg, #ececec, #ffd7e8);
+  .icon {
+    font-size: 20px;
+    background: linear-gradient(135deg, #ff758c, #ff7eb3);
     color: white;
     width: 50px;
     height: 50px;
@@ -474,15 +453,15 @@ select#sexFilter{
     z-index: 10; /* Makes sure the list appears above other content when sticky */
   }
   .user-card {
-    width: 100%;
-    max-height: 250px;
-    padding: 10px;
+    width: 180px;
+    height: 180px;
   }
   .user-card p {
     font-family: "Noto Sans Lao", sans-serif;
     text-align: left;
     font-size: 14px;
     color: #777;
+    margin-top: 10px;
     overflow: hidden; /* Prevents text from overflowing the card */
     text-overflow: ellipsis; /* Adds "..." if the text is too long */
     white-space: normal; /* Allows the text to wrap to multiple lines */
@@ -490,7 +469,7 @@ select#sexFilter{
 
   .user-card h3 {
     font-family: "Noto Sans Lao", sans-serif;
-    font-size: 12px;
+    font-size: 20px;
     color: #101010;
     margin-top: 10px;
 
@@ -498,12 +477,13 @@ select#sexFilter{
     white-space: normal; /* Allows the text to wrap to multiple lines */
   }
   .user-card p.bio {
+    border: solid white;
 
     border-radius: 12px;
-    text-align: center;
     padding: 5px 10px 5px 10px;
-    font-size: 13px;
+    font-size: 12px;
     height: auto;
+    max-height: 200px;
     color: black;
   }
 
@@ -516,13 +496,5 @@ select#sexFilter{
     font-size: px;
     color: #525252;
     font-family: "Noto Sans Lao", sans-serif;
-  }
-  p.gender {
-    font-size: 11px;
-    display: flex;
-    align-items: center;
-    gap: 8px; /* Space between icon and text */
-    color: rgb(32, 32, 32); /* Adjust color for readability */
-    justify-content: center;
   }
 }

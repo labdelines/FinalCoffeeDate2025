@@ -14,9 +14,9 @@ var database = firebase.database();
 // Function to get gender icon
 function getGenderIcon(sex) {
   if (sex === "Male") {
-      return '<i class="fas fa-mars" style="color: #3498db;"></i>'; // Blue Male Icon
+      return '<i class="fas fa-mars" style="color:rgb(197, 232, 255);"></i>'; // Blue Male Icon
   } else if (sex === "Female") {
-      return '<i class="fas fa-venus" style="color: #e91e63;"></i>'; // Pink Female Icon
+      return '<i class="fas fa-venus" style="color:rgb(255, 241, 181);"></i>'; // Pink Female Icon
   } else if (sex === "LGBTQ+") {
       return '<i class="fas fa-rainbow" style="color: #ff9800;"></i>'; // Rainbow for LGBTQ+
   } else {
@@ -25,7 +25,7 @@ function getGenderIcon(sex) {
 }
 
 // Array of six vibrant colors for user cards
-const colors = ["#FFD8E2", "#f0d0c3", "#ebcdee", "#f6cfc3", "#eca175", "#fff1fa"];
+const colors = ["#2fba7f", "#e8004c", "#f45a3e", "#17e4ds", "#f6bc6a", "#8165ea"];
 
         // Function to fetch and display users with sex filter
         function fetchUsers() {
@@ -55,7 +55,7 @@ const colors = ["#FFD8E2", "#f0d0c3", "#ebcdee", "#f6cfc3", "#eca175", "#fff1fa"
               userCard.innerHTML = `
                 <div class="iconn">${user.icon || "👤"}</div>
                 <h3>${user.name || "Unknown"}</h3>
-                <p class="gender">${getGenderIcon(user.sex)} <strong>${user.sex || "Not specified"}</strong></p>
+                <p class="gender">${getGenderIcon(user.sex)} ${user.sex || "Not specified"}</p>
                 <p class="bio">${user.bio || "No bio available."}</p>
 
                 <div class="social-links">
@@ -101,6 +101,44 @@ const colors = ["#FFD8E2", "#f0d0c3", "#ebcdee", "#f6cfc3", "#eca175", "#fff1fa"
             }
           });
         }
+        // Function to fetch all users and pick one randomly
+        function getRandomUser() {
+          database.ref("users").once("value", function (snapshot) {
+              let users = [];
+      
+              snapshot.forEach(function (childSnapshot) {
+                  let user = childSnapshot.val();
+                  user.id = childSnapshot.key; // Store Firebase user ID
+                  users.push(user);
+              });
+      
+              if (users.length === 0) {
+                  alert("No users found!");
+                  return;
+              }
+      
+              // Select a random user
+              let randomUser = users[Math.floor(Math.random() * users.length)];
+      
+              // Show loading effect
+              document.body.innerHTML = `
+                  <div class="loading-screen ">
+                      <h2 > Loading, who is it... 💖</h2>
+                      <div class="spinner"></div>
+                  </div>
+              `;
+      
+              // Delay before redirecting (e.g., 3 seconds)
+              setTimeout(() => {
+                  window.location.href = `profile.html?id=${randomUser.id}`;
+              }, 3000);
+          });
+      }
+      
+
+// Attach event listener to the button
+document.getElementById("randomLoveBtn").addEventListener("click", getRandomUser);
+
 
         // Add event listener for filter change
         document.getElementById("sexFilter").addEventListener("change", fetchUsers);
