@@ -16,11 +16,11 @@ function getGenderIcon(sex) {
   if (sex === "Male") {
       return '<i class="fas fa-mars" style="color:rgb(197, 232, 255);"></i>'; // Blue Male Icon
   } else if (sex === "Female") {
-      return '<i class="fas fa-venus" style="color:rgb(255, 241, 181);"></i>'; // Pink Female Icon
+      return '<i class="fas fa-venus" style="color:rgb(209, 180, 51);"></i>'; // Pink Female Icon
   } else if (sex === "LGBTQ+") {
       return '<i class="fas fa-rainbow" style="color: #ff9800;"></i>'; // Rainbow for LGBTQ+
   } else {
-      return '<i class="fas fa-genderless" style="color: #9e9e9e;"></i>'; // Neutral Gray Icon
+      return '<i class="fas fa-genderless" style="color:rgb(63, 63, 63);"></i>'; // Neutral Gray Icon
   }
 }
 
@@ -123,7 +123,8 @@ const colors = ["#2fba7f", "#e8004c", "#f45a3e", "#17e4ds", "#f6bc6a", "#8165ea"
               // Show loading effect
               document.body.innerHTML = `
                   <div class="loading-screen ">
-                      <h2 > Loading, who is it... 💖</h2>
+                      <h2> Loading, who is it... 💖</h2>
+                      <h2 style="font-family: Noto Sans Lao, sans-serif"> ກໍາລັງຊອກ... ຫາຫົວໃຈຂອງເຈົ້າ 👀</h2>
                       <div class="spinner"></div>
                   </div>
               `;

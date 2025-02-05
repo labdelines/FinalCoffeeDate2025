@@ -43,7 +43,7 @@ body {
 #title_container h2 {
   font-family: "Noto Sans Lao", sans-serif;
 
-  font-size: 100px; /* Slightly larger font size for better visibility */
+  font-size: 80px; /* Slightly larger font size for better visibility */
 
   color: #fff; /* White text color for contrast */
   padding: 15px 30px; /* More padding for a balanced look */
@@ -189,7 +189,7 @@ button:hover {
 
 /* 🔹 User Card - Flexible with bio content */
 .user-card {
-  background: #fff;
+  background: #f6bc6a;
   border-radius: 12px;
   padding: 20px;
   box-shadow: 0 6px 15px rgba(0, 0, 0, 0.1);
@@ -240,7 +240,7 @@ button:hover {
 .user-card p {
   text-align: left;
   font-size: 14px;
-  color: #777;
+  color: #111111;
   margin-top: 10px;
   overflow: hidden; /* Prevents text from overflowing the card */
   text-overflow: ellipsis; /* Adds "..." if the text is too long */
@@ -279,7 +279,7 @@ button:hover {
 
 .user-card p {
   font-size: 14px;
-  color: #777;
+  color: #111111;
   margin: 5px 0;
 }
 
@@ -474,7 +474,7 @@ select#sexFilter{
     z-index: 10; /* Makes sure the list appears above other content when sticky */
   }
   .user-card {
-    width: 100%;
+    width: 175;
     max-height: 250px;
     padding: 10px;
   }
