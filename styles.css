@@ -76,6 +76,13 @@ body {
   border-radius: 10px; /* Rounded corners for a softer look */
 }
 
+.title-image {
+  width: 100%; /* Adjust as needed */
+  max-width: 500px; /* Limit max size */
+  height: auto; /* Keep aspect ratio */
+  border-radius: 25px;
+}
+
 /* 🔹 Form Styling */
 #form_container {
   background: #fff;
@@ -444,6 +451,8 @@ select#sexFilter{
   textarea,
   select {
     font-size: 12px;
+    width: 80%;
+    padding: 5px;
   }
 
   #title_container h2 {
@@ -454,6 +463,12 @@ select#sexFilter{
     font-size: 2rem;
     padding: 8px 15px;
   }
+
+  .title-image {
+    width: 100%; /* Adjust as needed */
+    max-width: 350px; /* Limit max size */
+    height: auto; /* Keep aspect ratio */
+}
 
   .iconn {
     font-size: 30px;
@@ -524,5 +539,8 @@ select#sexFilter{
     gap: 8px; /* Space between icon and text */
     color: rgb(32, 32, 32); /* Adjust color for readability */
     justify-content: center;
+  }
+  button.randomLoveBtn{
+    font-size: 30px;
   }
 }

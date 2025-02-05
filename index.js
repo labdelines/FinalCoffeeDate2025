@@ -31,59 +31,64 @@ function clearError(inputId) {
 
 // Save function with validation
 function save() {
-  var name = document.getElementById('name').value.trim();
-  var sex = document.getElementById('sex').value;
-  var bio = document.getElementById('bio').value.trim();
-  var instagram = document.getElementById('instagram').value.trim().toLowerCase();
-  var facebook = document.getElementById('facebook').value.trim();
-  var icon = document.getElementById('iconSelect').value;
+    var name = document.getElementById('name').value.trim();
+    var sex = document.getElementById('sex').value;
+    var bio = document.getElementById('bio').value.trim();
+    var instagram = document.getElementById('instagram').value.trim().toLowerCase();
+    var facebook = document.getElementById('facebook').value.trim();
+    var icon = document.getElementById('iconSelect').value;
 
-  var isValid = true;
+    var isValid = true;
 
-  // Validation checks
-  if (name === "") {
-      showError("name", "Name is required.");
-      isValid = false;
-  } else {
-      clearError("name");
-  }
+    // Validation checks
+    if (name === "") {
+        showError("name", "Name is required.");
+        isValid = false;
+    } else {
+        clearError("name");
+    }
 
-  if (sex === "") {
-      showError("sex", "Please select your sex.");
-      isValid = false;
-  } else {
-      clearError("sex");
-  }
+    if (sex === "") {
+        showError("sex", "Please select your sex.");
+        isValid = false;
+    } else {
+        clearError("sex");
+    }
 
-  if (instagram === "") {
-      showError("instagram", "Instagram username is required.");
-      isValid = false;
-  } else {
-      clearError("instagram");
-  }
+    if (instagram === "") {
+        showError("instagram", "Instagram username is required.");
+        isValid = false;
+    } else {
+        clearError("instagram");
+    }
 
-  if (!isValid) {
-      return; // Stop function if any field is invalid
-  }
+    if (!isValid) {
+        return; // Stop function if validation fails
+    }
 
-  // Save user data
-  var newUserRef = database.ref('users').push();
-  newUserRef.set({
-      name: name,
-      sex: sex,
-      bio: bio,
-      instagram: instagram,
-      facebook: facebook,
-      icon: icon
-  }).then(function() {
-      // Show success message (instead of alert)
-      document.getElementById("success-message").style.display = "block";
-
-      // Redirect after a short delay
-      setTimeout(function() {
-          window.location.href = "users.html";
-      }, 1500);
-  }).catch(function(error) {
-      console.error("Error saving user data: ", error);
-  });
+    // ✅ Check if Instagram username already exists in Firebase
+    database.ref('users').orderByChild('instagram').equalTo(instagram).once('value', function(snapshot) {
+        if (snapshot.exists()) {
+            // ❌ Instagram username already taken
+            showError("instagram", "This Instagram username is already taken. Try another.");
+        } else {
+            // ✅ Instagram username is unique, proceed with saving user data
+            var newUserRef = database.ref('users').push();
+            newUserRef.set({
+                name: name,
+                sex: sex,
+                bio: bio,
+                instagram: instagram,
+                facebook: facebook,
+                icon: icon
+            }).then(function() {
+                document.getElementById("success-message").style.display = "block";
+                setTimeout(function() {
+                    window.location.href = "users.html";
+                }, 1500);
+            }).catch(function(error) {
+                console.error("Error saving user data: ", error);
+            });
+        }
+    });
 }
