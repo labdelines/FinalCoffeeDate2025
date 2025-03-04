@@ -62,6 +62,7 @@ const colors = ["#2fba7f", "#e8004c", "#f45a3e", "#17e4ds", "#f6bc6a", "#8165ea"
                   ${user.instagram ? `<a href="https://www.instagram.com/${instagramUsername}" target="_blank"><i class="fab fa-instagram"></i></a>` : ""}
                   ${user.facebook ? `<a href="https://www.facebook.com/search/top?q=${encodeURIComponent(user.facebook)}" target="_blank"><i class="fab fa-facebook"></i></a>` : ""}
                 </div>
+                
               `;
 
               userList.appendChild(userCard);
@@ -69,47 +70,19 @@ const colors = ["#2fba7f", "#e8004c", "#f45a3e", "#17e4ds", "#f6bc6a", "#8165ea"
           });
         }
 
-        // Save function to submit data and reset form
-        function save() {
-          // Get form data
-          var name = document.getElementById("name").value;
-          var sex = document.getElementById("sex").value;
-          var bio = document.getElementById("bio").value;
-          var instagram = document.getElementById("instagram").value;
-          var facebook = document.getElementById("facebook").value;
-          var icon = document.getElementById("iconSelect").value;
-
-          // Create new user object
-          var newUser = {
-            name: name,
-            sex: sex,
-            bio: bio,
-            instagram: instagram,
-            facebook: facebook,
-            icon: icon
-          };
-
-          // Push to Firebase
-          database.ref("users").push(newUser, function(error) {
-            if (error) {
-              console.log("Error saving data:", error);
-            } else {
-              // Clear the form after submitting
-              document.getElementById("userForm").reset();
-              alert("Profile saved successfully!");
-              fetchUsers(); // Refresh user list after adding a new profile
-            }
-          });
-        }
         // Function to fetch all users and pick one randomly
-        function getRandomUser() {
+
+        function getRandomUser(sexFilter = "all") {
           database.ref("users").once("value", function (snapshot) {
               let users = [];
       
               snapshot.forEach(function (childSnapshot) {
                   let user = childSnapshot.val();
                   user.id = childSnapshot.key; // Store Firebase user ID
-                  users.push(user);
+                  // Only add users that match the sex filter (or all if filter is "all")
+            if (sexFilter === "all" || user.sex === sexFilter) {
+              users.push(user);
+          }
               });
       
               if (users.length === 0) {
@@ -132,13 +105,18 @@ const colors = ["#2fba7f", "#e8004c", "#f45a3e", "#17e4ds", "#f6bc6a", "#8165ea"
               // Delay before redirecting (e.g., 3 seconds)
               setTimeout(() => {
                   window.location.href = `profile.html?id=${randomUser.id}`;
-              }, 3000);
+              }, 1000);
           });
       }
       
 
 // Attach event listener to the button
-document.getElementById("randomLoveBtn").addEventListener("click", getRandomUser);
+document.getElementById("randomLoveBtn").addEventListener("click", function() {
+  // Get the current sex filter value from the dropdown
+  const currentSexFilter = document.getElementById("sexFilter").value;
+  // Pass it to getRandomUser
+  getRandomUser(currentSexFilter);
+});
 
 
         // Add event listener for filter change
